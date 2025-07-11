@@ -1,0 +1,3557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IndiaFirst Life Insurance - Member Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Reset and Base Styles */
+
+        .form-control:disabled {
+            cursor: not-allowed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: 60px;
+            background: #0c54a0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .loan-info {
+            text-align: right;
+            font-size: 12px;
+        }
+
+        .loan-info p {
+            margin-bottom: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: #0c54a0;
+            color: white;
+            padding: 12px 20px;
+            margin: 20px 0 0 0;
+            border-radius: 8px 8px 0 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .section-content {
+            background: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-label.required {
+            color: #dc3545;
+        }
+
+        .form-label.required::after {
+            content: " *";
+            color: #dc3545;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #0c54a0;
+            box-shadow: 0 0 0 2px rgba(12, 84, 160, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        /* Checkbox and Radio Styles */
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .checkbox-item input,
+        .radio-item input {
+            width: 16px;
+            height: 16px;
+            accent-color: #0c54a0;
+            outline: none !important;
+        }
+
+        input.form-input {
+            outline: none !important;
+        }
+
+        select {
+            outline: none !important;
+        }
+
+        .checkbox-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        /* Member Details Cards */
+        .member-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .member-card h4 {
+            color: #0c54a0;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .name-fields {
+            display: grid;
+            grid-template-columns: auto 2fr 2fr 2fr;
+            gap: 12px;
+            align-items: end;
+            margin-bottom: 16px;
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Address Sections */
+        .address-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .address-section h5 {
+            color: #0c54a0;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .address-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        /* Table Styles for Complex Data */
+        .responsive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .responsive-table input:focus {
+            border-color: #0c54a0 !important;
+        }
+
+        .responsive-table input:focus-visible {
+            border-color: #0c54a0 !important;
+        }
+
+        .responsive-table th,
+        .responsive-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .responsive-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .responsive-table input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 0.4rem;
+            margin-top: 10px;
+        }
+
+        /* Health Declaration Table */
+        .health-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .health-table tbody tr td:nth-child(1) {
+            text-align: center;
+        }
+
+        .health-table th,
+        .health-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .health-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .health-table .question-col {
+            width: 50%;
+        }
+
+        .health-table .answer-col {
+            width: 10%;
+            text-align: center;
+        }
+
+        /* Signature Boxes */
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .signature-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .signature-box .date-input {
+            margin-top: 12px;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 8px 24px;
+            background: #0c54a0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #0a4a8a;
+        }
+
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(12, 84, 160, 0.3);
+        }
+
+        .btn-center {
+            display: block;
+            margin: 30px auto;
+            max-width: 200px;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .text-small {
+            font-size: 12px;
+        }
+
+        .text-muted {
+            color: #666;
+        }
+
+        .text-bold {
+            font-weight: 600;
+        }
+
+        /* Special styling for specific elements */
+        .green-text {
+            color: #28a745;
+        }
+
+        .red-text {
+            color: #dc3545;
+        }
+
+        .blue-text {
+            color: #0c54a0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+
+            .grid-4,
+            .grid-5 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .responsive-table {
+                box-shadow: none;
+            }
+
+            .header-content {
+                /* grid-template-columns: 1fr;
+                text-align: center; */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .loan-info {
+                text-align: center;
+            }
+
+            .grid-2,
+            .grid-3,
+            .grid-4,
+            .grid-5 {
+                grid-template-columns: 1fr;
+            }
+
+            .name-fields {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .name-fields .form-label {
+                margin-bottom: 4px;
+            }
+
+            .personal-info {
+                grid-template-columns: 1fr;
+            }
+
+            .address-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .signature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile Table Styles */
+            .responsive-table,
+            .responsive-table thead,
+            .responsive-table tbody,
+            .responsive-table th,
+            .responsive-table td,
+            .responsive-table tr {
+                display: block;
+            }
+
+            .responsive-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .responsive-table tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+                padding: 10px;
+                border-radius: 8px;
+                background: white;
+                background: #f8f9fa;
+            }
+
+            .responsive-table td {
+                border: none;
+                position: relative;
+                /* padding-left: 50% !important; */
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+
+            .responsive-table td:before {
+                content: attr(data-label) ": ";
+                /* position: absolute; */
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: 600;
+                color: #555;
+            }
+
+            /* Health Table Mobile */
+            .health-table {
+                font-size: 12px;
+            }
+
+            /* .health-table,
+      .health-table thead,
+      .health-table tbody,
+      .health-table th,
+      .health-table td,
+      .health-table tr {
+        display: block;
+      }
+
+      .health-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+
+      .health-table tr {
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        padding: 15px;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .health-table td {
+        border: none;
+        padding: 8px 0;
+      }
+
+      .health-table td:first-child {
+        font-weight: 600;
+        color: #0c54a0;
+        margin-bottom: 8px;
+      }
+
+      .health-table .answer-col {
+        display: flex;
+        gap: 20px;
+        margin-top: 8px;
+      } */
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .section-header {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .section-content {
+                padding: 15px;
+            }
+
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 12px;
+                font-size: 16px;
+                /* Prevents zoom on iOS */
+            }
+
+            .btn {
+                width: 100%;
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .member-card {
+                padding: 15px;
+            }
+
+            .signature-box {
+                min-height: 100px;
+                padding: 12px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 12px;
+            }
+
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+
+            .section-header {
+                background: #000 !important;
+                color: white !important;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .member-card,
+            .section-content {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (prefers-contrast: high) {
+
+            .form-input,
+            .form-select,
+            .form-textarea {
+                border-color: #000;
+            }
+
+            .section-header {
+                background: #000;
+            }
+        }
+
+        .payment-section {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: #f8f9fa;
+        }
+
+        .payment-section h5 {
+            color: #0c54a0;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .payment-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin: 8px 0;
+            font-size: 12px;
+            color: #856404;
+        }
+
+        .signature-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .signature-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 16px;
+            font-size: 12px;
+            color: #856404;
+        }
+
+        /* Focus Management */
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus,
+        input[type="checkbox"]:focus,
+        input[type="radio"]:focus {
+            outline: 2px solid #0c54a0;
+            outline-offset: 2px;
+        }
+
+        .fixed-footer {
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.4);
+            /* semi-transparent white */
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fixed-footer .validate-btn {
+            margin-top: 0;
+        }
+
+        .validate-btn {
+            width: 25%;
+            padding: 11px;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            background: #F2581B !important;
+            color: #fff !important;
+            cursor: pointer;
+            transition: 0.5s;
+            letter-spacing: 0.8px;
+            font-size: 13px !important;
+            margin-top: 23px;
+            transition: 0.5s;
+        }
+
+        @media (max-width: 455px) {
+            input[type="date"]:before {
+                content: attr(placeholder) !important;
+                color: #aaa;
+            }
+
+            input[type="date"]:focus:before,
+            input[type="date"]:valid:before {
+                content: "";
+            }
+
+            input[type="date"] {
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+        }
+
+        .validate-btn:hover {
+            background: #e54100 !important;
+        }
+
+        input::placeholder {
+            font-size: 0.9rem !important;
+            font-weight: 400;
+            letter-spacing: 0.4px;
+        }
+
+        .form-select-salutation {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        @media screen and (max-width: 425px) and (min-width: 310px) {
+            .validate-btn {
+                width: 90% !important;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 365px) {
+
+            /* .section-content:has(> .health-table), */
+            .section-content:has(table.health-table) {
+                padding: 0 !important;
+            }
+
+            .mobile-pad {
+                padding: 15px;
+            }
+
+            .health-table td {
+                padding: 1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-content">
+                <!-- <div class="logo">IndiaFirst Life</div> -->
+                <img src="https://betaaffinity.elephant.in/assets/images/life.png" alt="" width="150">
+                <div></div>
+                <div class="loan-info">
+                    <p><strong>Loan Ref. No.</strong> &lt;Loan Reference Number&gt;</p>
+                    <p><strong>Product UIN No.</strong></p>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="product-uin" checked />
+                        <label for="product-uin">Life Group Loan Protect Plan - 143N055V02</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Title -->
+        <div class="section-header">
+            Member Form – IndiaFirst Life Group Loan Protect Plan
+        </div>
+
+        <!-- Basic Information Section -->
+        <div class="section-content">
+
+            <div class="address-section">
+                <div class="grid-3">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" for="client-id">Client Id:</label>
+                            <input type="text" id="client-id" class="form-input" placeholder="Enter Client Id" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="dsa-code">DSA Code:</label>
+                            <input type="text" id="dsa-code" class="form-input" placeholder="Enter DSA Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="mph-name">MPH Name:</label>
+                            <input type="text" id="mph-name" class="form-input" value="Samunnati"
+                                placeholder="Enter MPH Name" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" for="sms-branch">SMS/RLE Branch Code:</label>
+                            <input type="text" id="sms-branch" class="form-input" value="Samunnati"
+                                placeholder="Enter SMS/RLE Branch Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="branch-code">Branch Code:</label>
+                            <input type="text" id="branch-code" class="form-input" value="Samunnati"
+                                placeholder="Enter Branch Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="transaction-no">Transaction No:</label>
+                            <input type="text" id="transaction-no" class="form-input"
+                                placeholder="Enter Transaction No" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" for="sms-lg">SMS/RLE LG Code:</label>
+                            <input type="text" id="sms-lg" class="form-input" placeholder="Enter SMS/RLE LG Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="branch-lg">Branch LG Code:</label>
+                            <input type="text" id="branch-lg" class="form-input" placeholder="Enter Branch LG Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="transaction-date">Date of Transaction:</label>
+                            <input type="date" id="transaction-date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2 mt-20">
+                    <div class="form-group">
+                        <label class="form-label" for="account-ref">Account/ Ref. No.:</label>
+                        <input type="text" id="account-ref" class="form-input" placeholder="Enter Account/ Ref. No." />
+                    </div>
+                    <div>
+                        <div class="checkbox-row">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="primary-life" checked />
+                                <label for="primary-life">Primary Life (Life 1)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="secondary-life" checked />
+                                <label for="secondary-life">Secondary Life (Life 2)</label>
+                            </div>
+                        </div>
+                        <p class="text-small text-muted">
+                            (Select "✓" for applicable loan type)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="loan-type">Loan- Home/ Education/Vehicle/Personal/Others, Please
+                        Specify:</label>
+                    <input type="text" id="loan-type" class="form-input" value="Business Loan"
+                        placeholder="Enter Loan- Home/ Education/Vehicle/Personal/Others, Please Specify" />
+                </div>
+
+                <div class="grid-2">
+                    <div class="checkbox-row">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="new-loan" checked />
+                            <label for="new-loan">New Loan</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="old-loan" />
+                            <label for="old-loan">Old Loan</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="old-account">Old Loan Account Number:</label>
+                        <input type="text" id="old-account" class="form-input"
+                            placeholder="Enter Old Loan Account Number" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member Details Section -->
+        <div class="section-header">Details of the Members</div>
+        <div class="section-content">
+            <!-- Primary Life -->
+            <div class="member-card">
+                <h4>Primary Life Name *</h4>
+                <div class="name-fields">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <select class="form-select-salutation">
+                            <option>Mr.</option>
+                            <option>Ms.</option>
+                            <option>Mx.</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" placeholder="Enter First Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Middle Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Last Name" />
+                    </div>
+                </div>
+                <div class="personal-info">
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Life -->
+            <div class="member-card">
+                <h4>Secondary Life Name</h4>
+                <div class="name-fields">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <select class="form-select-salutation">
+                            <option>Mr.</option>
+                            <option>Ms.</option>
+                            <option>Mx.</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" placeholder="Enter First Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Middle Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Last Name" />
+                    </div>
+                </div>
+                <div class="personal-info">
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Life -->
+            <div class="member-card">
+                <h4>Spouse/ Third Life Name</h4>
+                <div class="name-fields">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <select class="form-select-salutation">
+                            <option>Mr.</option>
+                            <option>Ms.</option>
+                            <option>Mx.</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" placeholder="Enter First Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Middle Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Last Name" />
+                    </div>
+                </div>
+                <div class="personal-info">
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth Life -->
+            <div class="member-card">
+                <h4>Fourth Life Name</h4>
+                <div class="name-fields">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <select class="form-select-salutation">
+                            <option>Mr.</option>
+                            <option>Ms.</option>
+                            <option>Mx.</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" placeholder="Enter First Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Middle Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" placeholder="Enter Last Name" />
+                    </div>
+                </div>
+                <div class="personal-info">
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select">
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication Address Section -->
+        <div class="section-header">
+            Communication Address of the Member
+            <small>(Address to which COI will be dispatched)</small>
+        </div>
+
+        <div class="section-content">
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 1 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 1" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 2 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 2" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 3 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 3" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 4 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 4" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Permanent Address Section -->
+        <div class="section-header">
+            Permanent address of the Member
+            <small>(if different from the above address)</small>
+        </div>
+
+        <div class="section-content">
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 1 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 1" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 2 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 2" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 3 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 3" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Communication Address- Life 4 *</h5>
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Enter Communication Address- Life 4" />
+                </div>
+                <div class="address-fields">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" placeholder="Enter City Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">State</label>
+                        <input type="text" class="form-input" placeholder="Enter State Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pin Code</label>
+                        <input type="text" class="form-input" placeholder="Enter Pin Code" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information Section -->
+
+            <div class="address-section">
+                <h5 class="red-text">Mobile Number</h5>
+                <div class="grid-4">
+                    <div class="form-group">
+                        <label class="form-label">Mobile Life 1:</label>
+                        <input type="tel" class="form-input" placeholder="Enter Mobile Number Life 1" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobile Life 2:</label>
+                        <input type="tel" class="form-input" placeholder="Enter Mobile Number Life 2" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobile Life 3:</label>
+                        <input type="tel" class="form-input" placeholder="Enter Mobile Number Life 3" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobile Life 4:</label>
+                        <input type="tel" class="form-input" placeholder="Enter Mobile Number Life 4" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Email ID</h5>
+                <div class="grid-4">
+                    <div class="form-group">
+                        <label class="form-label">Email ID- Life 1:</label>
+                        <input type="email" class="form-input" placeholder="Enter Email ID Life 1" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email ID- Life 2:</label>
+                        <input type="email" class="form-input" placeholder="Enter Email ID Life 2" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email ID- Life 3:</label>
+                        <input type="email" class="form-input" placeholder="Enter Email ID Life 3" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email ID- Life 4:</label>
+                        <input type="email" class="form-input" placeholder="Enter Email ID Life 4" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Occupation Details Section -->
+
+            <div class="address-section">
+                <h5 class="red-text">Occupation Details - Primary Life</h5>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Primary Life - Occupation:</label>
+                        <input type="text" class="form-input" value="Self Employed"
+                            placeholder="Enter Primary Life - Occupation" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nature of duties:</label>
+                        <input type="text" class="form-input" placeholder="Enter Nature of duties" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Occupation Details - Sec. Life</h5>
+                <div class="grid-2 mb-16">
+                    <div class="form-group">
+                        <label class="form-label">Sec. Life - Occupation:</label>
+                        <input type="text" class="form-input" value="Self Employed"
+                            placeholder="Enter Sec. Life - Occupation" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nature of duties:</label>
+                        <input type="text" class="form-input" placeholder="Enter Nature of duties" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Occupation Details - Third Life</h5>
+                <div class="grid-2 mb-16">
+                    <div class="form-group">
+                        <label class="form-label">Third Life - Occupation:</label>
+                        <input type="text" class="form-input" value="Self Employed"
+                            placeholder="Enter Third Life - Occupation" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nature of duties:</label>
+                        <input type="text" class="form-input" placeholder="Enter Nature of duties" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="address-section">
+                <h5 class="red-text">Occupation Details - Fourth Life</h5>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Fourth Life - Occupation:</label>
+                        <input type="text" class="form-input" value="Self Employed"
+                            placeholder="Enter Fourth Life - Occupation" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nature of duties:</label>
+                        <input type="text" class="form-input" placeholder="Enter Nature of duties" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Insurance Details Section -->
+        <div class="section-header">Insurance Details</div>
+        <div class="section-content">
+            <div class="address-section">
+
+                <div class="grid-3 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">Base Sum Assured ₹</label>
+                        <input type="text" class="form-input" placeholder="Enter Base Sum Assured" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pay Mode:</label>
+                        <input type="text" class="form-input" value="Single" placeholder="Enter Pay Mode" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pay Frequency:</label>
+                        <input type="text" class="form-input" value="Single" placeholder="Enter Pay Frequency" />
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">Cover Term:</label>
+                        <input type="text" class="form-input" placeholder="Enter Cover Term" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Premium Paying Term:</label>
+                        <div class="checkbox-row">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="single-term" checked />
+                                <label for="single-term">Single</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="limited-5" />
+                                <label for="limited-5">Limited 5</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="limited-7" />
+                                <label for="limited-7">Limited 7</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="limited-10" />
+                                <label for="limited-10">Limited 10</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="regular" />
+                                <label for="regular">Regular</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">Installment Premium Amount:</label>
+                        <input type="text" class="form-input" placeholder="Enter Installment Premium Amount" />
+                    </div>
+                    <div>
+                        <div class="checkbox-row">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="death-benefit" />
+                                <label for="death-benefit">Death Benefit</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="lump-sum" checked />
+                                <label for="lump-sum" class="">LumpSum</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Income (years):</label>
+                        <input type="text" class="form-input" />
+                    </div>
+                </div>
+
+                <div class="grid-4 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">Annual Income- Life 1:</label>
+                        <input type="text" class="form-input" placeholder="Enter Annual Income - Life 1" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Annual Income- Life 2:</label>
+                        <input type="text" class="form-input" placeholder="Enter Annual Income - Life 2" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Annual Income- Life 3:</label>
+                        <input type="text" class="form-input" placeholder="Enter Annual Income - Life 3" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Annual Income- Life 4:</label>
+                        <input type="text" class="form-input" placeholder="Enter Annual Income - Life 4" />
+                    </div>
+                </div>
+
+                <div class="checkbox-row mb-16">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="life-cover" checked />
+                        <label for="life-cover">Life Cover</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="life-atpd" />
+                        <label for="life-atpd">Life Cover + Accidental Total Permanent Disability</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="life-ad" />
+                        <label for="life-ad">Life Cover + Accidental Death</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="life-ci" />
+                        <label for="life-ci">Life Cover + Critical Illness</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="life-fi" />
+                        <label for="life-fi">Life Cover + Family Income</label>
+                    </div>
+                </div>
+
+                <p class="text-small text-muted mb-20 payment-note">
+                    • For New Loan, Sum Assured and Plan Term will be as per sanctioned
+                    limit. For Existing Loan, Sum Assured and Plan Term will be as per
+                    outstanding balance as on date of premium debit
+                </p>
+
+                <div class="grid-2 mb-20">
+                    <div>
+                        <label class="form-label">Premium paid from loan</label>
+                        <div class="checkbox-row">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="premium-yes" />
+                                <label for="premium-yes">Yes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="premium-no" />
+                                <label for="premium-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Premium paid account number</label>
+                        <input type="text" class="form-input" placeholder="Enter Premium Paid Account Number" />
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">PAN/Form 60 Life 1</label>
+                        <input type="text" class="form-input" placeholder="Enter PAN/Form 60 Life 1" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PAN/Form 60 Life 2</label>
+                        <input type="text" class="form-input" placeholder="Enter PAN/Form 60 Life 2" />
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">PAN/Form 60 Life 3</label>
+                        <input type="text" class="form-input" placeholder="Enter PAN/Form 60 Life 3" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PAN/Form 60 Life 4</label>
+                        <input type="text" class="form-input" placeholder="Enter PAN/Form 60 Life 4" />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20">
+                    <div>
+                        <label class="form-label">Cover Type</label>
+                        <div class="checkbox-row">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="level" />
+                                <label for="level">Level</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="decreasing" checked />
+                                <label for="decreasing">Decreasing</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-row">
+                            <div class="radio-item">
+                                <input type="radio" id="fixed-rate" name="rate-type" />
+                                <label for="fixed-rate">Fixed Rate</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="floating-rate" name="rate-type" />
+                                <label for="floating-rate">Floating Rate</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Rate of Interest</label>
+                        <input type="text" class="form-input" placeholder="Enter Rate of Interest" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Moratorium Period</label>
+                        <input type="text" class="form-input" placeholder="Enter Moratorium Period" />
+                    </div>
+                </div>
+
+                <div class="joint-life-section">
+                    <label class="form-label">In case of Joint Life sum assured (%):</label>
+
+                    <div class="grid-4 mb-20 mt-20">
+                        <div class="form-group">
+                            <label class="form-label">Life 1:</label>
+                            <input type="text" class="form-input" placeholder="Enter Life 1" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Life 2:</label>
+                            <input type="text" class="form-input" placeholder="Enter Life 2" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Life 3:</label>
+                            <input type="text" class="form-input" placeholder="Enter Life 3" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Life 4:</label>
+                            <input type="text" class="form-input" placeholder="Enter Life 4" />
+                        </div>
+                    </div>
+
+                    Or
+                    <div class="grid-2 mb-20 mt-20">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="level">
+                            <label for="level">100% for both life (Policy terminates in case of death of any
+                                one life)</label>
+                        </div>
+                        <input type="text" class="form-input" style="width: 100%; padding: 10px 12px; height: auto"
+                            placeholder="Enter % for both life" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nominee Details Section -->
+        <div class="section-header">Nominee/ Appointee Details *</div>
+        <div class="section-content">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Nominee Name</th>
+                        <th>Percentage Share</th>
+                        <th>DOB of Nominee</th>
+                        <th>Relationship with Life Assured</th>
+                        <th>Appointee Name (if applicable)</th>
+                        <th>Appointee DOB</th>
+                        <th>Relationship with Nominee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Nominee Name">
+                            <input type="text" class="form-input" placeholder="Enter Nominee Name" />
+                        </td>
+                        <td data-label="Percentage Share">
+                            <input type="text" class="form-input"
+                                placeholder="Enter Percentage Share in % (e.g. 50%)" />
+                        </td>
+                        <td data-label="DOB of Nominee">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Life Assured">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Life Assured" />
+                        </td>
+                        <td data-label="Appointee Name (if applicable)">
+                            <input type="text" class="form-input" placeholder="Enter Appointee Name (if applicable)" />
+                        </td>
+                        <td data-label="Appointee DOB">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Nominee">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Nominee" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Nominee Name">
+                            <input type="text" class="form-input" placeholder="Enter Nominee Name" />
+                        </td>
+                        <td data-label="Percentage Share">
+                            <input type="text" class="form-input"
+                                placeholder="Enter Percentage Share in % (e.g. 50%)" />
+                        </td>
+                        <td data-label="DOB of Nominee">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Life Assured">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Life Assured" />
+                        </td>
+                        <td data-label="Appointee Name (if applicable)">
+                            <input type="text" class="form-input" placeholder="Enter Appointee Name (if applicable)" />
+                        </td>
+                        <td data-label="Appointee DOB">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Nominee">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Nominee" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Nominee Name">
+                            <input type="text" class="form-input" placeholder="Enter Nominee Name" />
+                        </td>
+                        <td data-label="Percentage Share">
+                            <input type="text" class="form-input"
+                                placeholder="Enter Percentage Share in % (e.g. 50%)" />
+                        </td>
+                        <td data-label="DOB of Nominee">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Life Assured">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Life Assured" />
+                        </td>
+                        <td data-label="Appointee Name (if applicable)">
+                            <input type="text" class="form-input" placeholder="Enter Appointee Name (if applicable)" />
+                        </td>
+                        <td data-label="Appointee DOB">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Nominee">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Nominee" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="Nominee Name">
+                            <input type="text" class="form-input" placeholder="Enter Nominee Name" />
+                        </td>
+                        <td data-label="Percentage Share">
+                            <input type="text" class="form-input"
+                                placeholder="Enter Percentage Share in % (e.g. 50%)" />
+                        </td>
+                        <td data-label="DOB of Nominee">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Life Assured">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Life Assured" />
+                        </td>
+                        <td data-label="Appointee Name (if applicable)">
+                            <input type="text" class="form-input" placeholder="Enter Appointee Name (if applicable)" />
+                        </td>
+                        <td data-label="Appointee DOB">
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </td>
+                        <td data-label="Relationship with Nominee">
+                            <input type="text" class="form-input" placeholder="Enter Relationship with Nominee" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Benefit Payment Mode Section - NEW SECTION ADDED -->
+        <div class="section-header">
+            Benefit Payment Mode <small>(Choose any one mode only)</small>
+        </div>
+        <div class="section-content">
+            <p class="text-small text-muted mb-16">
+                <strong>For Member</strong>
+                <br />
+                Mode selected will be used by the Company to pay the proposer
+                according to the terms of the plan. If none of the below electronic
+                payout option is chosen, the Company reserves the right to use any
+                alternative payout option.
+            </p>
+
+            <!-- Member Payment Details -->
+            <div class="payment-section">
+                <h5>Bank Details</h5>
+                <div class="grid-4 mb-20 mt-20">
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label for="level"> ECS</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>
+                                Direct Credit (Bank of Baroda & <br />
+                                Union Bank of India)</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label for="level"> NEFT</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label"> Bank Name:</label>
+                        <input type="text" class="form-input" placeholder="Enter Bank Name" />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20">
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px">
+                        <label class="form-label">Account Type:</label>
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label> Current</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label> Savings</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Branch Name:</label>
+                        <input type="text" class="form-input" placeholder="Enter Branch Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bank Account No.:</label>
+                        <input type="text" class="form-input" placeholder="Enter Bank Account No." />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">MICR: </label>
+                        <input type="text" class="form-input" placeholder="Enter MICR" />
+                        <br />
+                        <br />
+                        <span class="payment-note">Mandatory for ECS mode</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">IFSC Code:</label>
+                        <input type="text" class="form-input" placeholder="Enter IFSC Code" />
+                        <br />
+                        <br />
+                        <span class="payment-note"> Mandatory for NEFT mode</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Customer’s Name as per the Bank Account:</label>
+                        <input type="text" class="form-input" />
+                    </div>
+                </div>
+
+                <h5>
+                    Please provide a cancelled copy of your cheque if any of the above
+                    option is selected
+                </h5>
+            </div>
+
+            <!-- Nominee Payment Details -->
+
+            <div class="payment-section">
+                <div class="grid-1 mb-20">
+                    <div class="form-group">
+                        <h5>For Nominee</h5>
+                        <input type="text" class="form-input" placeholder="Enter Nominee Name" />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20 mt-20">
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>
+                                Direct Credit (Bank of Baroda & <br />
+                                Union Bank of India)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label for="level"> NEFT</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label"> Bank Name:</label>
+                        <input type="text" class="form-input" placeholder="Enter Bank Name" />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20">
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px">
+                        <label class="form-label">Account Type:</label>
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>Current</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>Savings</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Branch Name:</label>
+                        <input type="text" class="form-input" placeholder="Enter Branch Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bank Account No.:</label>
+                        <input type="text" class="form-input" placeholder="Enter Bank Account No." />
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">IFSC Code:</label>
+                        <input type="text" class="form-input" placeholder="Enter IFSC Code" />
+                        <br />
+                        <br />
+                        <span class="payment-note">Mandatory for NEFT mode</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nominee Name as per the Bank Account:</label>
+                        <input type="text" class="form-input" placeholder="Enter Nominee Name" />
+                    </div>
+                </div>
+                <div class="payment-note">
+                    Note: In case of multiple nominations, please add all nominees bank
+                    account details
+                </div>
+            </div>
+
+            <!-- Appointee Payment Details -->
+            <div class="payment-section">
+                <div class="grid-1 mb-20">
+                    <div class="form-group">
+                        <h5>For Appointee (In case the Nominee is minor)</h5>
+                        <input type="text" class="form-input" placeholder="Enter Appointee Name" />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20 mt-20">
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>
+                                Direct Credit (Bank of Baroda & <br />
+                                Union Bank of India)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label for="level"> NEFT</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label"> Bank Name:</label>
+                        <input type="text" class="form-input" placeholder="Enter Bank Name" />
+                    </div>
+                </div>
+
+                <div class="grid-3 mb-20">
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px">
+                        <label class="form-label">Account Type:</label>
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>Current</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" />
+                            <label>Savings</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Branch Name:</label>
+                        <input type="text" class="form-input" placeholder="Enter Branch Name" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bank Account No.:</label>
+                        <input type="text" class="form-input" placeholder="Enter Bank Account No." />
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label">IFSC Code:</label>
+                        <input type="text" class="form-input" placeholder="Enter IFSC Code" />
+                        <br />
+                        <br />
+                        <span class="payment-note">Mandatory for NEFT mode</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Appointee Name as per the Bank Account:</label>
+                        <input type="text" class="form-input" placeholder="Enter Appointee Name" />
+                    </div>
+                </div>
+                <div class="payment-note">
+                    <strong> Disclaimer: </strong>
+                    In case of non credit to my bank account with/without assigning any
+                    reasons thereof or if the transaction is delayed or not credited at
+                    all for reasons of incomplete/incorrect information, I will not hold
+                    IndiaFirst Life Insurance Co. Ltd. responsible. Further, the Company
+                    reserves the right to use any alternative payout option including
+                    demand draft/payable at par cheque in spite of opting for the direct
+                    credit option.
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Declaration Section -->
+        <div class="section-header">
+            Health Declaration for Member (Non disclosures or misrepresentation of
+            facts will highly impact claim settlement) *
+        </div>
+        <div class="section-content">
+            <div class="grid-2 mb-20 mobile-pad">
+                <div>
+                    <h6>Primary Life:</h6>
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label class="form-label">Feet</label>
+                            <input type="text" class="form-input" placeholder="Enter Feet" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Inches</label>
+                            <input type="text" class="form-input" placeholder="Enter Inches" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Weight in kg</label>
+                            <input type="text" class="form-input" placeholder="Enter Weight" />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h6>Secondary Life:</h5>
+                        <div class="grid-3">
+                            <div class="form-group">
+                                <label class="form-label">Feet</label>
+                                <input type="text" class="form-input" placeholder="Enter Feet" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Inches</label>
+                                <input type="text" class="form-input" placeholder="Enter Inches" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Weight in kg</label>
+                                <input type="text" class="form-input" placeholder="Enter Weight" />
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+            <table class="health-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th class="question-col">Questions</th>
+                        <th colspan="2">Primary Life</th>
+                        <th colspan="2">Secondary Life</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Yes</th>
+                        <th>No</th>
+                        <th>Yes</th>
+                        <th>No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>I hereby agree that: -</td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-0" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-0" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-0" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-0" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            I do not suffer from or ever had any medical ailments such as:
+                            (a) Diabetes, high blood pressure (b) Chest Pain or heart attack
+                            or any other heart disease (c) Cancer, tumor, growth or cyst of
+                            any kind (d) Stroke, paralysis, Epilepsy, any psychiatric /
+                            mental disorder , disorder of brain/nervous system or any kind
+                            of physical disabilities (e) Asthma, Tuberculosis or other lung
+                            disorder (f) Diseases or disorder of muscles, bones, spines,
+                            back or joints, arthritis, gout or blood disorder(anemia) or any
+                            endocrine disorder or reproductive organs (g) Diseases of the
+                            kidney, digestive system(stomach, pancreas, gall bladder,
+                            intestine), liver, Hepatitis B or C or HIV/AIDS infection (h)
+                            Congenital / birth defects, severe injury or other physical
+                            disability, and have not been incapable of working/ attending
+                            the office during the last two years for more than three
+                            consecutive days or I am not currently incapable of working/
+                            attending office.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-1" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-1" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-1" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-1" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            I am currently not taking any medications/drugs, other than
+                            minor condition (e.g. cold and flu), either prescribed or not
+                            prescribed by a doctor, or have not suffered from any illness,
+                            disorder, disability, injury during past 5 years which has
+                            required any form of medical or specialized examination
+                            (including chest x-rays, gynecological investigations, pap
+                            smear, or blood tests), consultation, hospitalization, surgery
+                            or have any condition for which hospitalization/ surgery has
+                            been advised or is contemplated.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-2" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-2" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-2" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-2" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            I am to the best of my knowledge and belief, in good health and
+                            free from all symptoms of illness and disease and I am not
+                            suffering from any disorder/ disease, or any surgery not
+                            mentioned above, nor my weight has altered (Gain/Loss) by more
+                            than 5 kg in the last 1 year was also not hospitalized for
+                            COVID- 19 infections and its related complications, nor was on
+                            oxygen support.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-3" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-3" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-3" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-3" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            For Female Lives: (a) I am not presently pregnant? (b) I never
+                            had any disease of breast, uterus, cervix, ovaries, or any other
+                            part of the reproductive system.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-4" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-4" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-4" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-4" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            None of my parents and siblings died before the age of 60 years
+                            as a result of diabetes, heart disease, high blood pressure,
+                            elevated blood fats, cancer, mental illness, HIV, stroke or had
+                            any hereditary disorder?
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-5" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-5" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-5" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-5" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            Do not intend to participate or participate in any hazardous
+                            sports or activities nor my occupation is associated with any
+                            specific hazards which would render me susceptible to any injury
+                            or illness, (e.g. chemical factory, mines, explosives, corrosive
+                            chemicals, etc.?)
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-6" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-6" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-6" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-6" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            I currently do not live or intend to live or travel outside
+                            India for more than six months in a financial year (If no, I
+                            will provide full details of countries to be visited along with
+                            purpose of visit and duration)
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-7" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-7" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-7" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-7" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            I have never ever taken drugs, or been advised to reduce alcohol
+                            consumption or received or have been counselled to receive
+                            treatment for drug addiction, alcoholism, or smoke more than 10
+                            cigarettes a day
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-8" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-8" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-8" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-8" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            I have never been refused, declined, deferred, and accepted at
+                            special terms, had cover reduced or had exclusion imposed for
+                            any life, health or accident insurance cover
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-9" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-9" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-9" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-9" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            I do not have any history of conviction under any criminal
+                            proceedings, in India or abroad
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-10" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="pl-10" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-10" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="sl-10" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="text-small text-muted mb-20 payment-note">
+                (If No, to any of the above questions please provide us complete
+                details separately (including dates, duration and treatment, names and
+                addresses of physicians)
+            </p>
+        </div>
+
+        <!-- Health Declaration Section -->
+        <div class="section-header">
+            Health Declaration for Member (Non disclosures or misrepresentation of
+            facts will highly impact claim settlement) *
+        </div>
+        <div class="section-content">
+            <div class="grid-2 mb-20 mobile-pad">
+
+                <div>
+                    <h6>Third Life:</h6>
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label class="form-label">Feet</label>
+                            <input type="text" class="form-input" placeholder="Enter Feet" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Inches</label>
+                            <input type="text" class="form-input" placeholder="Enter Inches" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Weight in kg</label>
+                            <input type="text" class="form-input" placeholder="Enter Weight" />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h6>Fourth Life:</h6>
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label class="form-label">Feet</label>
+                            <input type="text" class="form-input" placeholder="Enter Feet" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Inches</label>
+                            <input type="text" class="form-input" placeholder="Enter Inches" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Weight in kg</label>
+                            <input type="text" class="form-input" placeholder="Enter Weight" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="health-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th class="question-col">Questions</th>
+                        <th colspan="2">Third Life</th>
+                        <th colspan="2">Fourth Life</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Yes</th>
+                        <th>No</th>
+                        <th>Yes</th>
+                        <th>No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>I hereby agree that: -</td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-0" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-0" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-0" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-0" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            I do not suffer from or ever had any medical ailments such as:
+                            (a) Diabetes, high blood pressure (b) Chest Pain or heart attack
+                            or any other heart disease (c) Cancer, tumor, growth or cyst of
+                            any kind (d) Stroke, paralysis, Epilepsy, any psychiatric /
+                            mental disorder , disorder of brain/nervous system or any kind
+                            of physical disabilities (e) Asthma, Tuberculosis or other lung
+                            disorder (f) Diseases or disorder of muscles, bones, spines,
+                            back or joints, arthritis, gout or blood disorder(anemia) or any
+                            endocrine disorder or reproductive organs (g) Diseases of the
+                            kidney, digestive system(stomach, pancreas, gall bladder,
+                            intestine), liver, Hepatitis B or C or HIV/AIDS infection (h)
+                            Congenital / birth defects, severe injury or other physical
+                            disability, and have not been incapable of working/ attending
+                            the office during the last two years for more than three
+                            consecutive days or I am not currently incapable of working/
+                            attending office.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-1" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-1" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-1" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-1" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            I am currently not taking any medications/drugs, other than
+                            minor condition (e.g. cold and flu), either prescribed or not
+                            prescribed by a doctor, or have not suffered from any illness,
+                            disorder, disability, injury during past 5 years which has
+                            required any form of medical or specialized examination
+                            (including chest x-rays, gynecological investigations, pap
+                            smear, or blood tests), consultation, hospitalization, surgery
+                            or have any condition for which hospitalization/ surgery has
+                            been advised or is contemplated.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-2" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-2" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-2" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-2" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            I am to the best of my knowledge and belief, in good health and
+                            free from all symptoms of illness and disease and I am not
+                            suffering from any disorder/ disease, or any surgery not
+                            mentioned above, nor my weight has altered (Gain/Loss) by more
+                            than 5 kg in the last 1 year was also not hospitalized for
+                            COVID- 19 infections and its related complications, nor was on
+                            oxygen support.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-3" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-3" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-3" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-3" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>
+                            For Female Lives: (a) I am not presently pregnant? (b) I never
+                            had any disease of breast, uterus, cervix, ovaries, or any other
+                            part of the reproductive system.
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-4" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-4" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-4" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-4" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td>
+                            None of my parents and siblings died before the age of 60 years
+                            as a result of diabetes, heart disease, high blood pressure,
+                            elevated blood fats, cancer, mental illness, HIV, stroke or had
+                            any hereditary disorder?
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-5" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-5" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-5" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-5" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>6</td>
+                        <td>
+                            Do not intend to participate or participate in any hazardous
+                            sports or activities nor my occupation is associated with any
+                            specific hazards which would render me susceptible to any injury
+                            or illness, (e.g. chemical factory, mines, explosives, corrosive
+                            chemicals, etc.?)
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-6" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-6" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-6" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-6" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>7</td>
+                        <td>
+                            I currently do not live or intend to live or travel outside
+                            India for more than six months in a financial year (If no, I
+                            will provide full details of countries to be visited along with
+                            purpose of visit and duration)
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-7" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-7" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-7" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-7" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>8</td>
+                        <td>
+                            I have never ever taken drugs, or been advised to reduce alcohol
+                            consumption or received or have been counselled to receive
+                            treatment for drug addiction, alcoholism, or smoke more than 10
+                            cigarettes a day
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-8" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-8" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-8" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-8" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>9</td>
+                        <td>
+                            I have never been refused, declined, deferred, and accepted at
+                            special terms, had cover reduced or had exclusion imposed for
+                            any life, health or accident insurance cover
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-9" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-9" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-9" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-9" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>10</td>
+                        <td>
+                            I do not have any history of conviction under any criminal
+                            proceedings, in India or abroad
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-10" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="tl-10" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-10" />
+                        </td>
+                        <td class="answer-col">
+                            <input type="radio" name="fl-10" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="text-small text-muted mb-20 payment-note">
+                (If No, to any of the above questions please provide us complete
+                details separately (including dates, duration and treatment, names and
+                addresses of physicians)
+            </p>
+        </div>
+
+        <!-- Declaration Section -->
+        <div class="section-header">Declaration by the Member *</div>
+        <div class="section-content">
+            <div class="text-small mb-20 text-justify" style="line-height: 1.6">
+                <p class="mb-16 payment-note">
+                    I understand and agree that the answer and statements made on this
+                    Health Declaration are full, complete and true and will form the
+                    basis of the contract, which may arise. I / we further declare that
+                    I / we have not withheld any material fact or information which may
+                    affect the decision of IndiaFirst Life Insurance Company Limited
+                    (Hereafter called the "Company") in underwriting the risk. In case
+                    of fraud, misrepresentation and suppression of material facts by
+                    me/us, the policy contract/COI shall be treated in accordance with
+                    Sec 45 of Insurance Act,1938 as amended from time to time. All
+                    material facts, which may influence the assessment of the risk have
+                    been disclosed. I also understand that failure to make such
+                    disclosure shall give Company the right to cancel the insurance
+                    contract subject to Section 45 of the Insurance Act, 1938 as amended
+                    from time to time.
+                </p>
+
+                <p class="mb-16 payment-note">
+                    I understand and agree that the maximum cover under the insurance
+                    scheme shall not exceed as agreed with Master Policyholder,
+                    irrespective of any number of loan/Saving accounts held by me/us. I
+                    authorise the Company to seek medical information from any
+                    doctor/hospital in respect of any matter relating to my physical or
+                    mental health and I authorize the doctor/hospital to give such
+                    information to the Company and/or to their claims administrator or
+                    medical advisors. Further I also confirm that I have never
+                    participated nor intend to participate in any hazardous sports or
+                    activity. I agree that in case of any medical request on my proposal
+                    the risk will commence only on the date of acceptance of my proposal
+                    by the Company. I authorize sharing with the Company, my
+                    personal/contact information to enable them to carry out their
+                    duties as the insurer. I also declare that all the information given
+                    by me is true, correct and complete or else the policy shall stand
+                    cancelled.
+                </p>
+
+                <p class="mb-16 payment-note">
+                    I hereby agree and transfer all my rights, title, and interest
+                    within the aforementioned policy number. I further affirm that such
+                    assignment shall be subject to the condition that in the event on
+                    the happens of a contingent event during the term of the policy, the
+                    claim benefits as per the policy terms and conditions will be paid
+                    to the Assignee (The Master Policyholder) to the extent of the
+                    liability(Outstanding Loan Balance) under this assignment. Any
+                    amount in excess after the above payment shall be paid to my
+                    nominee. In case the policy is availed through a Regulated Entity as
+                    prescribed by the authority from time to time.
+                </p>
+
+                <p class="mb-16 payment-note">
+                    By submitting my details, I hereby authorize IndiaFirst Life and its
+                    authorized representatives to contact me and send
+                    information/communication through SMS/Family Phone/Letter/WhatsApp
+                    and/or any other electronic mode of communication to my registered
+                    email id/ phone number. I hereby consent IndiaFirst Life to store,
+                    share, process, use my personal data/information with government
+                    agencies / statutory authorities / entities as authorized by the
+                    IRDAI, third party service providers and partners & affiliates for
+                    the purposes of issuance of policy, data analytics, and other
+                    related due diligence activities as may be required by IndiaFirst
+                    Life.
+                </p>
+
+                <p class="mb-16 payment-note">
+                    The disclosure of information made on this platform is with my
+                    willful consent. I further acknowledge and agree that IndiaFirst
+                    Life shall not be held liable for any breach, loss, or unauthorized
+                    disclosure of the data provided here in.
+                </p>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="signature-grid">
+                <div class="signature-box">
+                    <div>
+                        <p class="text-small">OTP verified date & time : </p>
+                        <p class="text-small">Name of the borrower : </p>
+                        <p class="text-small text-bold">
+                            Primary Life Signature/Thumb impression*:
+                        </p>
+                    </div>
+                    <div class="date-input">
+                        <label class="form-label">Date:</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+
+                <div class="signature-box">
+                    <div>
+                        <p class="text-small text-bold">
+                            Sec. Life Signature/Thumb impression*:
+                        </p>
+                    </div>
+                    <div class="date-input">
+                        <label class="form-label">Date:</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+
+                <div class="signature-box">
+                    <div>
+                        <p class="text-small text-bold">
+                            Third Life Signature/Thumb impression*:
+                        </p>
+                    </div>
+                    <div class="date-input">
+                        <label class="form-label">Date:</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+
+                <div class="signature-box">
+                    <div>
+                        <p class="text-small text-bold">
+                            Fourth Life Signature/Thumb impression*:
+                        </p>
+                    </div>
+                    <div class="date-input">
+                        <label class="form-label">Date:</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label text-bold">OTP Verified:</label>
+                <div class="checkbox-row">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="otp-life1" checked />
+                        <label for="otp-life1">Life 1</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="otp-life2" />
+                        <label for="otp-life2">Life 2</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="otp-life3" />
+                        <label for="otp-life3">Life 3</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="otp-life4" />
+                        <label for="otp-life4">Life 4</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-small mb-20">
+                <p class="text-bold">
+                    Signature authentication (Single factor authentication):
+                </p>
+                <p>
+                    An OTP authentication number has been sent on your registered mobile
+                    number. By feeding in the said number in the system, you hereby
+                    unconditionally and absolutely acknowledge and accept the Terms and
+                    Conditions of the policy in its entirety and the same would create a
+                    legally binding agreement between the Company and You.
+                </p>
+            </div>
+        </div>
+
+        <!-- Declaration by Authorised Representative of Person with Disability -->
+        <div class="section-header">
+            Declaration to be made by a 3rd Person where: a) The insured member has
+            affixed his/her thumb impression; Or b) The insured member has signed in
+            vernacular; Or c) The insured member has not filled the application .
+        </div>
+        <div class="section-content">
+            <p class="text-small mb-20 text-justify payment-note" style="line-height: 1.6">
+                <strong>The declaration should be attested by a person of standing whose
+                    identity can easily be established, but unconnected with the insurer
+                    in any capacity.</strong>
+            </p>
+            <p class="payment-note">
+                I hereby declare that I have fully explained the above questions and
+                contents of the proposal form to the Member in
+                <select style="width: 120px; margin: 0 10px 0 5px">
+                    <option>English</option>
+                </select>language, and that the Member has affixed the thumb impression above
+                after fully understanding the contents thereof. in my presence”
+            </p>
+            <div class="grid-2 mb-20">
+                <div class="form-group">
+                    <label class="form-label">Name of the Declarant:</label>
+                    <input type="text" class="form-input" placeholder="Enter Name of the Declarant" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Relation with Member:</label>
+                    <input type="text" class="form-input" placeholder="Enter Relation with Member" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Address of the Declarant:</label>
+                <input type="text" class="form-input" placeholder="Enter Address of the Declarant" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Signature:</label>
+                <div class="checkbox-row">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="otp-life1" checked />
+                        <label for="otp-life1">or OTP verified</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Declaration by Authorised Representative of Person with Disability -->
+        <div class="section-header">
+            Declaration by Authorised Representative of Person with Disability:
+        </div>
+        <div class="section-content">
+            <div class="grid-2 mb-20">
+                <div class="form-group">
+                    <label class="form-label">I</label>
+                    <input type="text" class="form-input" placeholder="Enter Name of the Authorised Representative" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Son/Daughter of</label>
+                    <input type="text" class="form-input" placeholder="Enter Son/Daughter of" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">adult and residing at</label>
+                <input type="text" class="form-input" placeholder="Enter adult and residing at" />
+            </div>
+
+            <p>do hereby declare on solemn affirmation as under</p>
+
+            <p class="payment-note">
+                Life to be Insured (Primary borrower) is a person with disability and
+                requires assistance in completing the Member form. I am duly
+                authorised by the competent court / authority to fill this Member form
+                on behalf of Life to be Insured (Primary borrower). I have read out
+                and fully explained the contents of the Member form to
+            </p>
+
+            <br />
+
+            <div class="form-group">
+                <label class="form-label">Mr./Mrs./Ms.</label>
+                <input type="text" class="form-input" placeholder="Enter Name" />
+            </div>
+
+            <p class="payment-note">
+                and he/she has understood the significance of the proposed contract. I
+                have truthfully and correctly recorded the replies given by the Life
+                to be Insured (Primary borrower) in the Member form.
+            </p>
+
+            <br />
+
+            <div class="grid-2 mb-20">
+                <div class="form-group">
+                    <label class="form-label">Solemnly affirmed at</label>
+                    <input type="text" class="form-input" placeholder="Enter Solemnly affirmed at" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">On</label>
+                    <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                </div>
+            </div>
+
+            <div class="grid-2 mb-20">
+                <div class="form-group">
+                    <label class="form-label">
+                        Signature of the Authorised Representative:
+                    </label>
+                    <div class="checkbox-row">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="otp-life1" checked />
+                            <label for="otp-life1">or OTP verified</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Relationship of the Authorised Representative:
+                    </label>
+                    <input type="text" class="form-input" placeholder="Enter Relationship" />
+                </div>
+            </div>
+
+            <p class="payment-note">
+                I certify that the contents of the Member form have been clearly
+                explained to me and I have fully understood them. I further certify
+                that the replies in the Member form have been recorded as per the
+                information provided by me.
+            </p>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label class="form-label">
+                        Signature or Thumb Impression of the Member
+                    </label>
+                    <div class="checkbox-row">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="otp-life1" checked />
+                            <label for="otp-life1">or OTP verified</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-content">
+            <div class="signature-section">
+                <div class="signature-info">
+                    <p class="mb-16 text-bold">
+                        Section 41 of Insurance Act 1938, as amended from time to time:
+                    </p>
+                    <p class="mb-16">
+                        1) No person shall allow or offer to allow, either directly or
+                        indirectly, as an inducement to any person, to take or renew or
+                        continue an insurance in respect of any kind of risk relating to
+                        lives or property in India, any rebate of the whole or part of the
+                        commission payable or any rebate of the premium shown on the
+                        Policy, nor shall any person taking out or renewing or continuing
+                        a Policy accept any rebate, except such rebate as may be allowed
+                        in accordance with the published prospectuses or tables of the
+                        insurer. 2) Any person making default in complying with the
+                        provisions of this section shall be liable for a penalty which may
+                        extend to ten lakh rupees.
+                    </p>
+                </div>
+
+                <div class="signature-info">
+                    <p class="mb-16 text-bold">
+                        Extract of Section 45 of the Insurance Act, 1938, as amended from
+                        time to time:
+                    </p>
+                    <p class="mb-16">
+                        No policy of life insurance shall be called into question on any
+                        ground whatsoever after the expiry of three years from the date of
+                        policy. A policy of life insurance may be called into question at
+                        any time within three years from the date of policy, on the ground
+                        of fraud or on the ground that any statement of or suppression of
+                        a fact material to the expectancy of the life of the insured was
+                        incorrectly made in the proposal or other document on the basis of
+                        which the policy was issued or revived or rider issued. The
+                        insurer shall have to communicate in writing to the insured or
+                        legal representatives or nominees or assignees of the insured, the
+                        grounds and materials on which such decision is based.
+                    </p>
+
+                    <p class="mb-16">
+                        No insurer shall repudiate a life insurance policy on the ground
+                        of fraud if the insured can prove that the misstatement or
+                        suppression of material fact was true to the best of his knowledge
+                        and belief or that there was no deliberate intention to suppress
+                        the fact or that such misstatement or suppression are within the
+                        knowledge of the insurer. In case of fraud, the onus of disproving
+                        lies upon the beneficiaries, in case the policyholder is not
+                        alive. In case of repudiation of the policy on the ground of
+                        misstatement or suppression of a material fact and not on the
+                        grounds of fraud, the premiums collected on the policy till the
+                        date of repudiation shall be paid.
+                    </p>
+
+                    <p class="mb-16">
+                        Nothing in this section shall prevent the insurer from calling for
+                        proof of age at any time if he is entitled to do so, and no policy
+                        shall be deemed to be called in question merely because the terms
+                        of the policy are adjusted on subsequent proof that the age of the
+                        life insured was incorrectly stated in the proposal. For complete
+                        details of the section and the definition of 'date of policy',
+                        please refer Section 45 of the Insurance Act, 1938, as amended
+                        from time to time.
+                    </p>
+                </div>
+
+                <div class="signature-info">
+                    <p class="text-small text-bold">
+                        Customers are advised not to pay insurance premium (initial or
+                        renewal) through cash or bearer instrument to IndiaFirst Life
+                        Insurance Advisors/Employees/Insurance Agents. IndiaFirst Life
+                        Insurance Advisors/Employees/Insurance Agents are not authorized
+                        to receive the premium in cash or bearer instrument to any
+                        IndiaFirst Life Insurance Advisor / Employee/Insurance Agents is
+                        solely at your own risk and the company or its agents will not be
+                        responsible for any loss in this regard. Insurance Premium Cheques
+                        must be drawn in favour of IndiaFirst Life Insurance Company Ltd.
+                        (Proposal no. for first premium/ policy no. for renewal premium
+                        should be written behind the cheque). Any Cheque payment made
+                        shall be deemed to be received by IndiaFirst Life insura
+                    </p>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label text-bold">Signature:</label>
+                        <div class="signature-info">
+                            <p class="text-small">OTP verified date &amp; time :</p>
+                            <p class="text-small" style="margin-bottom: 0;">Name of the borrower :</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label text-bold">Date:</label>
+                        <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+
+                <div class="grid-2 mb-20">
+                    <div class="form-group">
+                        <label class="form-label text-bold">Name of Life to be Assured:</label>
+                        <input type="text" class="form-input" placeholder="Enter Name of Life to be Assured" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label text-bold">Place:</label>
+                        <input type="text" class="form-input" placeholder="Enter Place Name" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mandate Form - Direct Debit / NACH (To be filled only for Regular / Limited premium) -->
+
+        <div class="section-header">
+            Mandate Form - Direct Debit / NACH
+            <small>(To be filled only for Regular / Limited premium)</small>
+        </div>
+        <div class="section-content">
+                <div>
+                    <div class="header-content" style="margin-bottom: 20px">
+                        <div class="logo" style="
+                width: 150px;
+                height: 60px;
+                background: none;
+                color: #0c54a0;
+                font-size: 20px;
+              ">
+                            <!-- <img src="images/logo.png" alt="Company Logo" style="max-width: 100%; max-height: 100%" /> -->
+                            <img src="https://betaaffinity.elephant.in/assets/images/life.png" alt="" width="150">
+
+                        </div>
+                        <div style="text-align: right">
+                            <p class="text-bold">NACH Mandate</p>
+                            <div class="checkbox-row" style="justify-content: flex-end">
+                                <div class="radio-item">
+                                    <input type="radio" name="cmc" id="cmc-create" />
+                                    <label for="cmc-create">Create</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="cmc" id="cmc-modify" />
+                                    <label for="cmc-modify">Modify</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="cmc" id="cmc-cancel" />
+                                    <label for="cmc-cancel">Cancel</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-4">
+                        <div class="form-group">
+                            <label class="form-label">UMRN:</label>
+                            <input type="text" class="form-input" placeholder="Enter UMRN" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date:</label>
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sponsor Bank Code:</label>
+                            <input type="text" class="form-input" placeholder="Enter Sponsor Bank Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Utility Code:</label>
+                            <input type="text" class="form-input" placeholder="Enter Utility Code" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">I/We hereby authorize
+                            <strong class="blue-text">IndiaFirst Life Insurance Company Ltd</strong>
+                            to debit (tick ✓)</label>
+                        <div class="checkbox-row">
+                            <div class="radio-item">
+                                <input type="radio" name="authdebit" id="auth-sb" />
+                                <label for="auth-sb">SB</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="authdebit" id="auth-ca" />
+                                <label for="auth-ca">CA</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="authdebit" id="auth-cc" />
+                                <label for="auth-cc">CC</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="authdebit" id="auth-sb-nre" />
+                                <label for="auth-sb-nre">SB-NRE</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="authdebit" id="auth-sb-nro" />
+                                <label for="auth-sb-nro">SB-NRO</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" name="authdebit" id="auth-other" />
+                                <label for="auth-other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Bank a/c number:</label>
+                            <input type="text" class="form-input" placeholder="Enter Bank a/c number" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">with Bank:</label>
+                            <input type="text" class="form-input" placeholder="Enter Bank" />
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">IFSC:</label>
+                            <input type="text" class="form-input" placeholder="Enter IFSC Code" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">MICR:</label>
+                            <input type="text" class="form-input" placeholder="Enter MICR Code" />
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">an amount of Rupees:</label>
+                            <input type="text" class="form-input" placeholder="Enter Amount" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Amount (₹):</label>
+                            <input type="text" class="form-input" placeholder="Enter Amount" />
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Frequency:</label>
+                            <div class="checkbox-row">
+                                <div class="radio-item">
+                                    <input type="radio" name="freq-tick" id="freq-mthly" />
+                                    <label for="freq-mthly">Mthly</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="freq-tick" id="freq-qtly" />
+                                    <label for="freq-qtly">Qtly</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="freq-tick" id="freq-h-yrly" />
+                                    <label for="freq-h-yrly">H-Yrly</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="freq-tick" id="freq-as-when" checked />
+                                    <label for="freq-as-when">As &amp; when presented</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Debit type:</label>
+                            <div class="checkbox-row">
+                                <div class="radio-item">
+                                    <input type="radio" name="debit-type" id="debit-fixed" />
+                                    <label for="debit-fixed">Fixed Amount</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="debit-type" id="debit-maximum" checked />
+                                    <label for="debit-maximum">Maximum Amount</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Application No. / Loan Account No.:</label>
+                            <input type="text" class="form-input" placeholder="Enter Application No." />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mobile No.:</label>
+                            <input type="text" class="form-input" placeholder="Enter Mobile No." />
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label">Policy No.:</label>
+                            <input type="text" class="form-input" placeholder="Enter Policy No." />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email ID:</label>
+                            <input type="text" class="form-input" placeholder="Enter Email ID" />
+                        </div>
+                    </div>
+
+                    <p class="text-bold mb-16">
+                        I agree for the debit of mandate processing charges by the Bank whom
+                        I am authorizing to debit my account as per the latest schedule of
+                        charges of the bank.
+                    </p>
+
+                    <div class="grid-3">
+                        <div class="form-group">
+                            <label class="form-label">Period From:</label>
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Period To:</label>
+                            <input type="date" class="form-input" placeholder="DD-MM-YYYY" />
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox-item" style="margin-top: 30px">
+                                <input type="checkbox" id="until-cancelled" />
+                                <label for="until-cancelled">Until cancelled</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-3">
+                        <div class="signature-box">
+                            <p class="text-bold">OTP verified date & time
+
+                                <br>
+                                <br>
+                                Name of the borrower
+
+                                <br>
+                                <br>
+                                1. Primary Life Signature/Thumb impression*:
+                            </p>
+                        </div>
+
+                        <div class="signature-box">
+                            <p class="text-bold">Name of the borrower
+
+                                <br>
+                                <br>
+                                2. Name as in bank records
+
+                            </p>
+                        </div>
+
+                        <div class="signature-box">
+                            <p class="text-bold">Name of the borrower
+
+                                <br>
+                                <br>
+                                3. Name as in bank records
+
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-8 text-bold signature-info" style="margin-top: 10px;">
+                        •
+                        <small>This is to confirm that the declaration has been carefully read,
+                            understood &amp; made by me / us. I am authorizing the user entity
+                            / corporate to debit my account</small>
+                    </div>
+                    <p class="mb-8 text-bold signature-info" style="margin-top: 10px;">
+                        •
+                        <small>I have understood that I am authorized to cancel / amend this
+                            mandate by appropriately communicating the cancellation /
+                            amendment request to the user entity / corporate or the bank where
+                            I have authorized the debit.</small>
+                    </p>
+                </div>
+
+                <div class="payment-section" style="margin-top: 20px">
+                    <div class="grid-2">
+                        <div style="border-right: 1px solid #e9ecef; padding-right: 15px">
+                            <p class="text-bold mb-16">Declaration for Auto Debit</p>
+                            <ul style="list-style-type: disc; margin-left: 20px; padding: 0">
+                                <li class="mb-8 text-small">
+                                    If the transaction is delayed or not effected at all for
+                                    reasons of incomplete or incorrect information, I / we shall
+                                    not hold the company responsible for such delay or non credit
+                                    to my policy.
+                                </li>
+                                <li class="mb-8 text-small">
+                                    In addition, I/We understand and agree that the premium amount
+                                    to be debited from my/ our account may vary due to taxes and
+                                    other statutory levies as may be applicable from time to time.
+                                    I/ We also accept that the transaction will be effected to the
+                                    policy on the due date (provided it is a working day).
+                                </li>
+                                <li class="mb-8 text-small">
+                                    In case of an ECS / direct debit dishonor, I/We authorize
+                                    IndiaFirst Life Insurance to re-debit my/our bank account with
+                                    the mentioned bank to recover the premium payable.
+                                </li>
+                                <li class="mb-8 text-small">
+                                    I hereby authorize IndiaFirst Life Insurance Co. Ltd. and
+                                    their authorized service providers to debit my Bank Account
+                                    directly or by NACH for collection of premium payments.
+                                </li>
+                                <li class="mb-8 text-small">
+                                    I/We hereby agree to maintain adequate balance in the account
+                                    stated herein for availing Direct Debit facility.
+                                </li>
+                                <li class="mb-8 text-small text-bold">
+                                    I/We hereby authorize the Bank to debit my account towards
+                                    charges for DD mandate verification if any applicable.
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="text-bold mb-16">
+                                Yes, I/ we have attached a blank cancelled cheque Certificate of
+                                the Bank Named in the Mandate
+                            </p>
+                            <p class="mb-16 text-small">
+                                It is certified that as per our records, the bank account
+                                particulars of the mandate above are correct and the signature
+                                of the bank account holder is true.
+                            </p>
+                            <div class="grid-2">
+                                <div class="form-group">
+                                    <label class="form-label">Bank Stamp</label>
+                                    <input type="file" class="form-input" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Signature of Authorized Bank official</label>
+                                    <input type="file" class="form-input" />
+                                </div>
+                            </div>
+                            <p class="mb-8 text-bold text-small">
+                                DD mandate should be verified by bank branch and should have
+                                "Signature verified stamp" along with "fixed specimen signature
+                                number".
+                            </p>
+                            <p class="mb-8 text-small">
+                                NACH / DD is an automated facility which debits your premium
+                                from the bank account specified by you on your premium due date,
+                                except in case of a holiday.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signature-grid">
+                    <div class="signature-box">
+                        <p class="text-bold">Policyholder's Signature</p>
+                    </div>
+                    <div class="signature-box">
+                        <p class="text-bold">Primary Account holder's Signature</p>
+                        <p class="text-small text-muted">
+                            (If Primary Account holder differs from Policyholder)
+                        </p>
+                    </div>
+                    <div class="signature-box">
+                        <p class="text-bold">Joint Account holder's 1 Signature</p>
+                    </div>
+                    <div class="signature-box">
+                        <p class="text-bold">Joint Account holder's 2 Signature</p>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-3 fixed-footer">
+            <button type="button" type="button" class="validate-btn btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#otpModal">Validate OTP</button>
+        </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-4">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title bg-transparent text-black" id="otpModalLabel">Verify OTP</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your code was sent to your mobile.</p>
+                    <div class="otp-field d-flex justify-content-center gap-2">
+                        <div class="otp-field d-flex justify-content-center gap-2">
+                            <input type="text" class="otp-input form-control text-center" maxlength="1"
+                                style="width: 40px; height: 38px" />
+                            <input type="text" class="otp-input form-control text-center" maxlength="1"
+                                style="width: 40px; height: 38px" disabled />
+                            <input type="text" class="otp-input form-control text-center" maxlength="1"
+                                style="width: 40px; height: 38px" disabled />
+                            <input type="text" class="otp-input form-control text-center" maxlength="1"
+                                style="width: 40px; height: 38px" disabled />
+                            <input type="text" class="otp-input form-control text-center" maxlength="1"
+                                style="width: 40px; height: 38px" disabled />
+                            <input type="text" class="otp-input form-control text-center" maxlength="1"
+                                style="width: 40px; height: 38px" disabled />
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary">Verify</button>
+                    </div>
+                    <p class="resend text-muted mt-3 text-center">
+                        Didn't receive code? <a href="#" class="">Resend OTP</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basic form validation and interaction
+        document.addEventListener("DOMContentLoaded", function () {
+            // Auto-resize textareas
+            const textareas = document.querySelectorAll(".form-textarea");
+            textareas.forEach((textarea) => {
+                textarea.addEventListener("input", function () {
+                    this.style.height = "auto";
+                    this.style.height = this.scrollHeight + "px";
+                });
+            });
+
+            // Mobile menu toggle for better UX
+            const sectionHeaders = document.querySelectorAll(".section-header");
+            sectionHeaders.forEach((header) => {
+                if (window.innerWidth <= 768) {
+                    header.style.cursor = "pointer";
+                    header.addEventListener("click", function () {
+                        const content = this.nextElementSibling;
+                        if (content && content.classList.contains("section-content")) {
+                            content.style.display =
+                                content.style.display === "none" ? "block" : "none";
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const inputs = document.querySelectorAll(".otp-input");
+
+        inputs.forEach((input, index) => {
+            input.addEventListener("input", () => {
+                input.value = input.value.replace(/[^0-9]/g, "");
+
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].disabled = false;
+                    inputs[index + 1].focus();
+                }
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && index > 0 && input.value === '') {
+                        inputs[index - 1].focus();
+                        inputs[index].disabled = true;
+                    }
+                });
+            });
+
+            input.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && index > 0 && input.value === "") {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        inputs[0].focus();
+    </script>
+
+</body>
+
+</html>
